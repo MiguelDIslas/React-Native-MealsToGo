@@ -1,1 +1,1 @@
-export { default as RestaurantInfoCard } from './restaurant-info-card.component';
+export { default as RestaurantInfoCard } from './restaurant-info-card';
