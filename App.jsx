@@ -3,7 +3,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from "styled-components/native";
-import RestaurantsScreen from './src/features/restaurants/screens/restaurants.screen';
+import { RestaurantsScreen } from './src/features/restaurants/screens';
 import { Ionicons } from '@expo/vector-icons'
 import { theme } from './src/infrastructure/theme';
 
@@ -16,7 +16,7 @@ import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato'
 import { SafeArea } from './src/components'
 
 //Context
-import { RestaurantsContextProvider } from './src/services/restaurants/restaurants.context'
+import { RestaurantsContextProvider, LocationContextProvider } from './src/services'
 
 const Tab = createBottomTabNavigator();
 
@@ -49,25 +49,27 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsContextProvider>
-          <NavigationContainer>
-            <Tab.Navigator
-              screenOptions={{
-                tabBarActiveTintColor: "tomato",
-                tabBarInactiveTintColor: "gray",
-                headerShown: false,
-              }}
-            >
-              {TAB_OPTIONS.map((option) =>
-                <Tab.Screen key={option.name} name={option.name} component={option.component} options={{
-                  tabBarIcon: ({ color, size }) => (
-                    <Ionicons name={option.icon} size={size} color={color} />
-                  ),
-                }} />
-              )}
-            </Tab.Navigator>
-          </NavigationContainer>
-        </RestaurantsContextProvider>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <NavigationContainer>
+              <Tab.Navigator
+                screenOptions={{
+                  tabBarActiveTintColor: "tomato",
+                  tabBarInactiveTintColor: "gray",
+                  headerShown: false,
+                }}
+              >
+                {TAB_OPTIONS.map((option) =>
+                  <Tab.Screen key={option.name} name={option.name} component={option.component} options={{
+                    tabBarIcon: ({ color, size }) => (
+                      <Ionicons name={option.icon} size={size} color={color} />
+                    ),
+                  }} />
+                )}
+              </Tab.Navigator>
+            </NavigationContainer>
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
       <StatusBar style="auto" />
     </>
