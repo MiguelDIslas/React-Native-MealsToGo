@@ -1,6 +1,5 @@
 import styled from "styled-components/native";
-import { FlatList } from "react-native";
 
-export const RestaurantList = styled(FlatList)`
+export const SearchContainer = styled.View`
     padding: ${(props) => props.theme.space[3]};
 `;
