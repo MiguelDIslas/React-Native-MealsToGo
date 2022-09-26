@@ -3,7 +3,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "react-native";
 
-import  RestaurantsNavigator  from "./restaurants.navigator";
+import RestaurantsNavigator from "./restaurants.navigator";
+import MapNavigator from "./map.navigator";
 
 import { SafeArea } from "../../components/utility/safe-area.component";
 
@@ -14,11 +15,6 @@ const Settings = () => (
     <Text>Settings</Text>
   </SafeArea>
 );
-const Map = () => (
-  <SafeArea>
-    <Text>Map</Text>
-  </SafeArea>
-);
 
 const TAB_OPTIONS = [
   {
@@ -27,9 +23,9 @@ const TAB_OPTIONS = [
     component: RestaurantsNavigator,
   },
   {
-    name: "Map",
+    name: "MapN",
     icon: "md-map",
-    component: Map,
+    component: MapNavigator,
   },
   {
     name: "Settings",

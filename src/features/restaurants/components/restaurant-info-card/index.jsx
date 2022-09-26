@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { SvgXml } from "react-native-svg";
-import { Spacer, Text } from "../../../../components";
+import { Spacer, Text, Favourite } from "../../../../components";
 import { star, open } from "../../../../../assets/svg";
 import {
   Address,
@@ -34,6 +34,7 @@ export default class RestaurantInfoCard extends Component {
     const ratingArray = Array.from(new Array(Math.floor(rating)));
     return (
       <RestaurantCard elevation={5}>
+        <Favourite restaurant={this.restaurant} />
         <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
         <Info>
           <Text variant="label">{name}</Text>
