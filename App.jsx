@@ -21,12 +21,12 @@ import {
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyDHY6Gi_bdFNUcyTfKbYBA-l8uTf59C3XQ",
+  apiKey: process.env.API_KEY,
   authDomain: "meals-to-go-5b167.firebaseapp.com",
   projectId: "meals-to-go-5b167",
   storageBucket: "meals-to-go-5b167.appspot.com",
   messagingSenderId: "731084381316",
-  appId: "1:731084381316:web:e8f103050cc51c7d1936d1",
+  appId: process.env.API_ID,
 };
 
 const myApp = initializeApp(firebaseConfig);
