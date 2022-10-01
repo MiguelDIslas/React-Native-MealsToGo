@@ -1,13 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { API_KEY, API_ID } from "@env";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDHY6Gi_bdFNUcyTfKbYBA-l8uTf59C3XQ",
+    apiKey: API_KEY,
     authDomain: "meals-to-go-5b167.firebaseapp.com",
     projectId: "meals-to-go-5b167",
     storageBucket: "meals-to-go-5b167.appspot.com",
     messagingSenderId: "731084381316",
-    appId: "1:731084381316:web:e8f103050cc51c7d1936d1"
+    appId: API_ID
 };
 
 const firebaseApp = initializeApp(firebaseConfig);

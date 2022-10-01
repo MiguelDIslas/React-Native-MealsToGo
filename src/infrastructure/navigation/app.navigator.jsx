@@ -1,20 +1,17 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import { Text } from "react-native";
+
+import {
+  RestaurantsContextProvider,
+  LocationContextProvider,
+  FavouritesContextProvider,
+} from "../../services";
 
 import RestaurantsNavigator from "./restaurants.navigator";
 import MapNavigator from "./map.navigator";
-
-import { SafeArea } from "../../components/utility/safe-area.component";
+import SettingsNavigator from "./settings.navigator";
 
 const Tab = createBottomTabNavigator();
-
-const Settings = () => (
-  <SafeArea>
-    <Text>Settings</Text>
-  </SafeArea>
-);
 
 const TAB_OPTIONS = [
   {
@@ -28,33 +25,37 @@ const TAB_OPTIONS = [
     component: MapNavigator,
   },
   {
-    name: "Settings",
+    name: "SettingsN",
     icon: "md-settings",
-    component: Settings,
+    component: SettingsNavigator,
   },
 ];
 
 export const AppNavigator = () => (
-  <NavigationContainer>
-    <Tab.Navigator
-      screenOptions={{
-        tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "gray",
-        headerShown: false,
-      }}
-    >
-      {TAB_OPTIONS.map((option) => (
-        <Tab.Screen
-          key={option.name}
-          name={option.name}
-          component={option.component}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name={option.icon} size={size} color={color} />
-            ),
+  <FavouritesContextProvider>
+    <LocationContextProvider>
+      <RestaurantsContextProvider>
+        <Tab.Navigator
+          screenOptions={{
+            tabBarActiveTintColor: "tomato",
+            tabBarInactiveTintColor: "gray",
+            headerShown: false,
           }}
-        />
-      ))}
-    </Tab.Navigator>
-  </NavigationContainer>
+        >
+          {TAB_OPTIONS.map((option) => (
+            <Tab.Screen
+              key={option.name}
+              name={option.name}
+              component={option.component}
+              options={{
+                tabBarIcon: ({ color, size }) => (
+                  <Ionicons name={option.icon} size={size} color={color} />
+                ),
+              }}
+            />
+          ))}
+        </Tab.Navigator>
+      </RestaurantsContextProvider>
+    </LocationContextProvider>
+  </FavouritesContextProvider>
 );
